@@ -1,6 +1,7 @@
 import React, { useState, useEffect} from 'react'
-import {Routes, Route, useNavigate} from 'react-router-dom' // make sure you npm install this package
+import {Routes, Route, useNavigate} from 'react-router-dom' 
 import { GlobalStyles } from '@mui/material';
+// import '@fontsource/roboto/400.css';
 
 import {
   Home,
@@ -8,14 +9,8 @@ import {
   AccountForm,
   PostView,
   MessageForm,
-  CreatePost,
-  CommentSection,
-  EditPost,
-  Loading,
-  PostSingle,
-  Profile,
-  User,
-
+  SinglePostView,
+  AddPostComponent
 } from './'
 
 
@@ -53,30 +48,31 @@ function App() {
       // console.log(postsFromAPI)
     })
   }, [token])
+
   return <div>
-  <GlobalStyles styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }} />
-  <NavBar user={user} handleLogout={handleLogout}></NavBar>  
-  {/* // doesnt need to be in a route because it will always be at the top */}
-  {/* // another one that doesnt need a route would be Status -- hint this is a component */}
+    <GlobalStyles styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }} />
+    <NavBar user={user} handleLogout={handleLogout}></NavBar>  
+    {/* // doesnt need to be in a route because it will always be at the top */}
+    {/* // another one that doesnt need a route would be Status -- hint this is a component */}
 
-  <Routes>
-    {/* 
-    Old way
-    <Route exact path="/">
-      <Home user={user}></Home>
-    </Route> 
-    */}
+    <Routes>
+      {/* 
+      Old way
+      <Route exact path="/">
+        <Home user={user}></Home>
+      </Route> 
+      */}
 
-    {/* ALL ROUTES HERE */}
+      {/* ALL ROUTES HERE */}
 
-     <Route exact path="/" element={<Home  user={user}/>} />
-     <Route exact path="/posts" element={<PostView posts={posts} token={token} />} />
-     <Route exact path="/account/login" element={<AccountForm  setToken={setToken} user={user} setUser={setUser}/>} />
-     <Route exact path="/posts/message/:id" element={<MessageForm posts={posts} token={token} />} />
-  </Routes>
+       <Route exact path="/" element={<Home  user={user}/>} />
+       <Route exact path="/posts" element={<PostView posts={posts} token={token} />} />
+       <Route exact path="/account/login" element={<AccountForm  setToken={setToken} user={user} setUser={setUser}/>} />
+       <Route exact path="/posts/message/:id" element={<MessageForm posts={posts} token={token} />} />
+    </Routes>
 
 
-</div>;
+  </div>;
 }
 
 export default App;
